@@ -1,9 +1,18 @@
 package agh.ics.oop;
+import java.util.Scanner;
 
 public class World {
+
+    private static int cnt;
+
     public static void main(String[] args){
+
+        Scanner word = new Scanner(System.in);
+        String str = word.nextLine();
+
+
         System.out.println("start");
-        Direction[] dir = string_to_enum(new String[]{"f", "b", "s"});
+        Direction[] dir = string_to_enum(str);
         run(dir);
         System.out.println("stop");
     }
@@ -18,21 +27,42 @@ public class World {
 
         }
     }
-    static Direction[] string_to_enum(String[] args){
-        int size = args.length;
-        Direction[] dir = new Direction[size];
-        for(int i = 0; i < size; i++){
-            String arg = args[i];
-            switch (arg){
-                case "f" -> dir[i] = Direction.FORWARD;
-                case "b" -> dir[i] = Direction.BACKWARD;
-                case "r" -> dir[i] = Direction.RIGHT;
-                case "l" -> dir[i] = Direction.LEFT;
-                default -> dir[i] = Direction.UNKNOWN;
+    static Direction[] string_to_enum(String args){
+        int len = args.length();
+        char[] res = new char[len];
+        args.getChars(0, len,res, 0);
+
+        int cnt = 0;
+        for(int i = 0; i < len; i++){
+            if (res[i] == 'f' || res[i] == 'r' || res[i] == 'l' || res[i] == 'b'){
+                cnt++;
+            }
+        }
+        Direction[] dir = new Direction[cnt];
+        cnt--;
+        for(int i = 0; i < len; i++){
+            switch (res[i]){
+                case 'f':
+                    dir[cnt] = Direction.FORWARD;
+                    cnt--;
+                    break;
+                case 'b':
+                    dir[cnt] = Direction.BACKWARD;
+                    cnt--;
+                    break;
+                case 'r':
+                    dir[cnt] = Direction.RIGHT;
+                    cnt--;
+                    break;
+                case 'l':
+                    dir[cnt] = Direction.LEFT;
+                    cnt--;
+                    break;
+                default:
+                    break;
             }
         }
         return dir;
     }
-
 
 }
