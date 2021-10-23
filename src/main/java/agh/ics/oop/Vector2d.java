@@ -81,4 +81,5 @@ public class Vector2d {
         Vector2d that = (Vector2d) other;
         return x == that.x && y == that.y;
     }
+
 }
