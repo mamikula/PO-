@@ -66,3 +66,10 @@ public class World {
     }
 
 }
+
+
+/* enum MapD{new MapD()
+NORTH(),
+napisaćh hashcode
+hashcode musi zwracać to samo co equals zawsze
+*/
