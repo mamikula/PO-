@@ -1,14 +1,22 @@
 package agh.ics.oop;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Vector2dTest {
-    Vector2d x = new Vector2d(2, 1);
-    Vector2d y = new Vector2d(1, 2);
+    Vector2d x;
+    Vector2d y;
 
-    Vector2d a = new Vector2d(2, 2);
-    Vector2d b = new Vector2d(2, 2);
+    Vector2d a;
+    Vector2d b;
+
+    Vector2d v1;
+    Vector2d v2;
+    Vector2d v3;
+    Vector2d v4;
+    Vector2d v5;
+
 
     @Test
     void testToString() {
@@ -17,13 +25,26 @@ class Vector2dTest {
     }
 
     @Test
-    void precedes() {
-        assertFalse(x.precedes(y));
+    void testprecedes() {
+
+        assertFalse(b.precedes(v1));
+        assertFalse(b.precedes(v2));
+        assertFalse(b.precedes(v3));
+        assertTrue(b.precedes(v4));
+        assertFalse(b.precedes(v5));
+
+//        assertFalse(new Vector2d(1, 5),precedes(new Vector2d(1, 5)));
+//        zwracającą wartość true, jeśli oba pola mają wartość mniejszą bądź równą polom drugiego obiektu,
+        //zamienic and na or i jezeli testy przejda to jest zle, za slabo testujemy
     }
 
     @Test
-    void follows() {
-        assertFalse(x.follows(y));
+    void testfollows(){
+        assertTrue(b.follows(v1));
+        assertTrue(b.follows(v2));
+        assertFalse(b.follows(v3));
+        assertFalse(b.follows(v4));
+        assertTrue(b.follows(v5));
     }
 
     @Test
@@ -66,5 +87,20 @@ class Vector2dTest {
         assertNotEquals(x, "asd");
         assertNotEquals(true, null);
         assertTrue(a.equals(b));
+    }
+
+    @BeforeEach
+    void setup() {
+        x = new Vector2d(2, 1);
+        y = new Vector2d(1, 2);
+
+        a = new Vector2d(2, 2);
+        b = new Vector2d(2, 2);
+
+        v1 = new Vector2d(0, 0);
+        v2 = new Vector2d(-2, 2);
+        v3 = new Vector2d(1, 3);
+        v4 = new Vector2d(3, 2);
+        v5 = new Vector2d(2, 1);
     }
 }
