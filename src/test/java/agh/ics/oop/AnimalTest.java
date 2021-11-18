@@ -15,6 +15,8 @@ class AnimalTest {
     Animal test4;
     Animal test5;
     Animal test6;
+    RectangularMap map = new RectangularMap(4,4);
+
 
 //    @Test
 //    void move() {
@@ -112,12 +114,12 @@ class AnimalTest {
 
     @BeforeEach
     void setUp() {
-        test1 = new Animal();
-        test2 = new Animal();
-        test3 = new Animal();
-        test4 = new Animal();
-        test5 = new Animal();
-        test6 = new Animal();
+        test1 = new Animal(map);
+        test2 = new Animal(map);
+        test3 = new Animal(map);
+        test4 = new Animal(map);
+        test5 = new Animal(map);
+        test6 = new Animal(map);
 
         test2.move(MoveDirection.FORWARD);
         test2.move(MoveDirection.LEFT);

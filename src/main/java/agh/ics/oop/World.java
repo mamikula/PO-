@@ -6,12 +6,33 @@ import java.util.Scanner;
 public class World {
 
     public static void main(String[] args) {
-        Animal animal = new Animal();
-        System.out.println(animal);
 
-        OptionsParser parser = new OptionsParser();
-        List<MoveDirection> moveDirections = parser.parse(args);
-        System.out.println(moveDirections);
+
+
+        List<MoveDirection> directions = new OptionsParser().parse(new String[]{"f", "f", "f", "f" ,"f"});
+        GrassField field = new GrassField(10);
+        Vector2d[] positions = { new Vector2d(9,9) };
+        IEngine engine = new SimulationEngine(directions, field, positions);
+        field.plant();
+        engine.run();
+
+
+
+//        List<MoveDirection> directions = new OptionsParser().parse(args);
+//        IWorldMap map = new RectangularMap(10, 5);
+//        Animal kuksonbestia = new Animal(map);
+//        map.place(kuksonbestia);
+//        System.out.println(map);
+//        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+//        IEngine engine = new SimulationEngine(directions, map, positions);
+//        engine.run();
+
+//        Animal animal = new Animal();
+//        System.out.println(animal);
+
+//        OptionsParser parser = new OptionsParser();
+//        List<MoveDirection> moveDirections = parser.parse(args);
+//        System.out.println(moveDirections);
 
 
 //        for(MoveDirection i : moveDirections){
