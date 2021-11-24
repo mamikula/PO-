@@ -3,6 +3,9 @@ plugins {
     id 'application'
 }
 
+application {
+    mainClassName = 'agh.ics.oop.World'
+}
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -20,6 +23,4 @@ test {
     useJUnitPlatform()
 }
 
-run {
-    args "f", "f", "r", "l"
-}
+

@@ -1,21 +1,23 @@
 package agh.ics.oop;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public abstract class AbstractWorldMap implements IWorldMap{
+public abstract class AbstractWorldMap implements IPositionChangeObserver ,IWorldMap {
 
-    protected List<Animal> animals = new ArrayList<>();
-    protected Vector2d uppRight;
-    protected Vector2d lowLeft;
+    protected Map<Vector2d, Animal> animals = new LinkedHashMap<>();
+//    nie powinno tu tego być, wystarczy że to jest w GrassField
+//    protected Vector2d uppRight;
+//    protected Vector2d lowLeft;
 
+    @Override
+    public void positionChanged(Vector2d oldPosition, Vector2d newPosition){
+        animals.put(newPosition, animals.get(oldPosition));
+        animals.remove(oldPosition, animals.get(oldPosition));
+    }
 
     @Override
     public Object objectAt(Vector2d position) {
-        for (Animal animal: animals){
-            if(animal.getPosition().equals(position)) return animal;
-        }
-        return null;
+        return animals.get(position);
     }
 
     @Override
@@ -27,7 +29,8 @@ public abstract class AbstractWorldMap implements IWorldMap{
     public boolean place(Animal animal) {
         Vector2d pos = animal.getPosition();
         if (canMoveTo(pos)){
-            animals.add(animal);
+            animals.put(animal.getPosition(), animal);
+            animal.addObserver(this);
             return true;
         }
         return false;
@@ -35,12 +38,13 @@ public abstract class AbstractWorldMap implements IWorldMap{
 
     @Override
     public boolean isOccupied(Vector2d position) {
-        for (Animal animal : animals){
-            if(animal.getPosition().equals(position)) return true;
+        for (Vector2d key: animals.keySet()){
+            if(key.equals(position)) return true;
         }
         return false;
     }
+
     public String toString() {
-        return new MapVisualizer(this).draw(lowLeft, uppRight);
+        return new MapVisualizer(this).draw(new Vector2d(0, 0), new Vector2d(4, 4));
     }
 }

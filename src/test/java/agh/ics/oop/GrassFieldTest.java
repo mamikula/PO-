@@ -53,16 +53,6 @@ class GrassFieldTest {
     }
 
     @Test
-    void placeGrass() {
-        assertEquals(num, grasses.size());
-    }
-
-    @Test
-    void plant() {
-        assertEquals(num, grasses.size());
-    }
-
-    @Test
     void isOccupied() {
         assertTrue((map.isOccupied(new Vector2d(2, 1))) && (map.objectAt(new Vector2d(2, 1)) instanceof Animal));
         assertTrue((map.isOccupied(new Vector2d(3, 2))) && (map.objectAt(new Vector2d(3, 2)) instanceof Animal));
@@ -71,20 +61,28 @@ class GrassFieldTest {
         assertFalse((map.isOccupied(new Vector2d(0, 0))) && (map.objectAt(new Vector2d(0, 0)) instanceof Animal));
     }
 
+    @Test
+    void place(){
+        assertFalse(map.place(new Animal(map, new Vector2d(2, 1))));
+        assertTrue(map.place(new Animal(map, new Vector2d(9, 9))));
+        assertTrue(map.place(new Animal(map, new Vector2d(-1, -1))));
+        assertFalse(map.place(new Animal(map, new Vector2d(3, 2))));
+    }
+
     @BeforeEach
     void setUp() {
-        num = 10;
-        field = new GrassField(num);
-        field.plant();
-        grasses = field.getGrasses();
-        System.out.print(field);
+//        num = 10;
+//        field = new GrassField(num);
+//        field.plant();
+//        grasses = field.getGrasses();
+//        System.out.print(field);
 
 //        do zmieniania rozmiarów mapy
         field2 = new GrassField(4);
         positions = new Vector2d[]{new Vector2d(0, 3), new Vector2d(3, 0)};
-        directions = new OptionsParser().parse(new String[]{"f", "r", "l", "f", "f"});
-        newLL = new Vector2d(-1, 0);
-        newUR = new Vector2d(4, 4);
+        directions = new OptionsParser().parse(new String[]{"f", "r", "l", "f", "f", "b", "b"});
+        newLL = new Vector2d(0, 0);
+        newUR = new Vector2d(3, 4);
         engine = new SimulationEngine(directions, field2, positions);
         animals = new ArrayList<>();
         animals.add((Animal) field2.objectAt(new Vector2d(0, 3)));
