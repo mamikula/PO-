@@ -38,10 +38,7 @@ public class GrassField extends AbstractWorldMap {
     public Object objectAt(Vector2d position) {
         Object object = super.objectAt(position);
         if (object instanceof Animal) return object;
-        for (Vector2d key: grasses.keySet()){
-            if(key.equals(position)) return grasses.get(key);
-        }
-        return null;
+        return grasses.get(position);
     }
 
 
@@ -49,10 +46,7 @@ public class GrassField extends AbstractWorldMap {
     public boolean isOccupied(Vector2d position) {
         boolean object = super.isOccupied(position);
         if (object) return true;
-        for (Vector2d key: grasses.keySet()){
-            if(key.equals(position)) return true;
-        }
-        return false;
+        return grasses.containsKey(position);
     }
 
 
@@ -79,7 +73,7 @@ public class GrassField extends AbstractWorldMap {
     @Override
     public String toString(){
         Corners();
-        return super.toString();
-//        return new MapVisualizer(this).draw(this.lowLeft, this.uppRight);
+//        return super.toString();
+        return new MapVisualizer(this).draw(this.lowLeft, this.uppRight);
     }
 }

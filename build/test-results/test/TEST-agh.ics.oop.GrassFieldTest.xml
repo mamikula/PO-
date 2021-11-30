@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.GrassFieldTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-24T20:34:32" hostname="DESKTOP-273CHH0" time="0.028">
+<testsuite name="agh.ics.oop.GrassFieldTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-11-25T16:19:11" hostname="DESKTOP-273CHH0" time="0.046">
   <properties/>
-  <testcase name="Corners()" classname="agh.ics.oop.GrassFieldTest" time="0.028"/>
+  <testcase name="Corners()" classname="agh.ics.oop.GrassFieldTest" time="0.039"/>
+  <testcase name="canMoveTo()" classname="agh.ics.oop.GrassFieldTest" time="0.001"/>
+  <testcase name="isOccupied()" classname="agh.ics.oop.GrassFieldTest" time="0.001"/>
+  <testcase name="objectAt()" classname="agh.ics.oop.GrassFieldTest" time="0.0"/>
+  <testcase name="place()" classname="agh.ics.oop.GrassFieldTest" time="0.001"/>
   <system-out><![CDATA[ y\x  0 1 2 3
   4: ---------
   3: |N| | | |

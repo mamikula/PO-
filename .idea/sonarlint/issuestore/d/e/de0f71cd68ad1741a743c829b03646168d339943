@@ -1,0 +1,13 @@
+
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(Š‘…ûýÿÿÿÿ
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û³é–
+9
+java:S2119="Save and re-use this "Random".(¼Ú’¸þÿÿÿÿ
+V	java:S125D"<This block of commented-out lines of code should be removed.(Ããâ ýÿÿÿÿ
+Q	java:S125L"<This block of commented-out lines of code should be removed.(Ø‹ õ
+r	java:S127F"XRefactor the code in order to not assign to this loop counter from within the loop body.(Å·þýÿÿÿÿ
+c
+java:S2184?"HCast one of the operands of this multiplication operation to a "double".(Á”øëÿÿÿÿÿ
+^
+java:S2184@"HCast one of the operands of this multiplication operation to a "double".(¹–ÅŸ

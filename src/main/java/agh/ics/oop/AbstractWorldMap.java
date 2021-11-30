@@ -5,9 +5,7 @@ import java.util.*;
 public abstract class AbstractWorldMap implements IPositionChangeObserver ,IWorldMap {
 
     protected Map<Vector2d, Animal> animals = new LinkedHashMap<>();
-//    nie powinno tu tego być, wystarczy że to jest w GrassField
-//    protected Vector2d uppRight;
-//    protected Vector2d lowLeft;
+
 
     @Override
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition){
@@ -38,10 +36,7 @@ public abstract class AbstractWorldMap implements IPositionChangeObserver ,IWorl
 
     @Override
     public boolean isOccupied(Vector2d position) {
-        for (Vector2d key: animals.keySet()){
-            if(key.equals(position)) return true;
-        }
-        return false;
+        return animals.containsKey(position);
     }
 
     public String toString() {
