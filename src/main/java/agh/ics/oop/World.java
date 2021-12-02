@@ -3,18 +3,37 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class World {
 
     public static void main(String[] args) {
+        try {
+            List<MoveDirection> directions = new OptionsParser().parse(new String[]{"f", "f", "f", "f" ,"f"});
+            GrassField field = new GrassField(10);
+            Vector2d[] positions = { new Vector2d(9,9) };
+            IEngine engine = new SimulationEngine(directions, field, positions);
+            field.plant();
+            engine.run();
+        } catch(IllegalArgumentException ex) {
+            System.out.println(ex);
+//            ex.printStackTrace();
+            exit(0);
+        }
 
 
 
-        List<MoveDirection> directions = new OptionsParser().parse(new String[]{"f", "f", "f", "f" ,"f"});
-        GrassField field = new GrassField(10);
-        Vector2d[] positions = { new Vector2d(9,9) };
-        IEngine engine = new SimulationEngine(directions, field, positions);
-        field.plant();
-        engine.run();
+
+
+
+
+//        List<MoveDirection> directions = new OptionsParser().parse(new String[]{"f", "f", "f", "f" ,"f"});
+//        GrassField field = new GrassField(10);
+//        Vector2d[] positions = { new Vector2d(9,9) };
+//        IEngine engine = new SimulationEngine(directions, field, positions);
+//        field.plant();
+//        engine.run();
+
 
 
 

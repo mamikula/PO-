@@ -29,9 +29,11 @@ public abstract class AbstractWorldMap implements IPositionChangeObserver ,IWorl
         if (canMoveTo(pos)){
             animals.put(animal.getPosition(), animal);
             animal.addObserver(this);
+
             return true;
         }
-        return false;
+        throw new IllegalArgumentException(pos +" is occupied position");
+//        return false;
     }
 
     @Override

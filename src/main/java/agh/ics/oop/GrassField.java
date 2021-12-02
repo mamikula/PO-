@@ -9,29 +9,14 @@ public class GrassField extends AbstractWorldMap {
     private Map<Vector2d, Grass> grasses;
     protected Vector2d uppRight;
     protected Vector2d lowLeft;
+    private MapBoundary mapBoundary;
 
     public GrassField(int fields){
         this.fields = fields;
         this.grasses = new LinkedHashMap<>();
         this.uppRight = new Vector2d(0, 0);
         this.lowLeft = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
-    }
-
-    private void Corners() {
-        this.uppRight = new Vector2d(0, 0);
-        this.lowLeft = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
-
-        for (Vector2d key: grasses.keySet()) {
-            Vector2d pos = key;
-            if (!pos.precedes(uppRight)) uppRight = pos.upperRight(uppRight);
-            if (!pos.follows(lowLeft)) lowLeft = pos.lowerLeft(lowLeft);
-        }
-
-        for (Vector2d key: animals.keySet()){
-            Vector2d pos = key;
-            if (!pos.precedes(uppRight)) uppRight = pos.upperRight(uppRight);
-            if (!pos.follows(lowLeft)) lowLeft = pos.lowerLeft(lowLeft);
-        }
+        this.mapBoundary = new MapBoundary();
     }
 
     @Override
@@ -49,11 +34,21 @@ public class GrassField extends AbstractWorldMap {
         return grasses.containsKey(position);
     }
 
+    @Override
+    public boolean place(Animal animal) {
+        if(super.place(animal)){
+            animal.addObserver(mapBoundary);
+            mapBoundary.addElement(animal.getPosition());
+            return true;
+        }
+        throw new IllegalArgumentException(animal.getPosition() +" is occupied position");
+    }
 
     protected boolean placeGrass(Grass grass) {
         Vector2d pos = grass.getPosition();
-        if ((isOccupied(pos)) || (pos.precedes(new Vector2d(-1, -1)))) return false;
+        if ((isOccupied(pos)) || (pos.precedes(new Vector2d(-1, -1)))) return false;//throw new IllegalArgumentException(pos +" is occupied position");
         grasses.put(grass.getPosition(), grass);
+        mapBoundary.addElement(grass.getPosition());
         return true;
     }
 
@@ -72,8 +67,7 @@ public class GrassField extends AbstractWorldMap {
     }
     @Override
     public String toString(){
-        Corners();
-//        return super.toString();
-        return new MapVisualizer(this).draw(this.lowLeft, this.uppRight);
+
+        return new MapVisualizer(this).draw(mapBoundary.lowLeft(), mapBoundary.uppRight());
     }
 }

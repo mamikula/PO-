@@ -27,8 +27,8 @@ class OptionsParserTest {
     @BeforeEach
     void setUp() {
         parser = new OptionsParser();
-        test1 = new String[]{"l", "backward", "1", "x", "r", "forward", "r", "l", "b"};
-        test2 = new String[]{"r", "r", "r", "asd", "r", "f", "left"};
+        test1 = new String[]{"l", "backward", "r", "forward", "r", "l", "b"};
+        test2 = new String[]{"r", "r", "r", "r", "f", "left"};
         test3 = new String[]{"f", "f", "f", "f"};
 
 
